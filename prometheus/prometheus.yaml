@@ -1,0 +1,30 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+
+rule_files:
+  - /prometheus/alert.rules
+
+scrape_configs:
+  - job_name: 'node'
+    static_configs:
+      - targets: ['host.docker.internal:9100']
+  - job_name: lighthouse
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    scheme: http
+    static_configs:
+      - targets: ['host.docker.internal:5064']
+  - job_name: reth
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    scheme: http
+    static_configs:
+      - targets: ['host.docker.internal:9001']

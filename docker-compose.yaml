@@ -1,0 +1,48 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    container_name: reth-prometheus
+    user: "1000:1000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    network_mode: "host"
+    volumes:
+      - "./prometheus:/prometheus/"
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/prometheus/prometheus.yaml
+
+  node-exporter:
+    image: prom/node-exporter
+    network_mode: "host"
+    container_name: reth-exporter
+    ports:
+      - 9100:9100
+
+  grafana:
+    image: grafana/grafana
+    container_name: reth-grafana
+    network_mode: "host"
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: reth-alertmanager
+    network_mode: "host"
+    ports:
+      - 9093:9093
+    env_file:
+      - .env
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yaml'
+      - '--storage.path=/alertmanager'

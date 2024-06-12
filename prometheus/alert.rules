@@ -1,0 +1,20 @@
+groups:
+- name: server-rules
+  rules:
+  - alert: HighCPUUsage
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU usage (instance {{ $labels.instance }})"
+      description: "The server {{ $labels.instance }} has a CPU usage higher than 80% for more than 2 minutes."
+
+  - alert: HighRamUsage
+    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 10
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High RAM usage (instance {{ $labels.instance }})"
+      description: "The server {{ $labels.instance }} has a RAM usage higher than 90% for more than 2 minutes."
