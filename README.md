@@ -4,8 +4,8 @@
 This repository provides a Docker Compose setup for monitoring the execution of Reth Ethereum, an Ethereum client compatible with the Merge upgrade. It leverages Prometheus for monitoring, Grafana for data visualization, and Alertmanager for alert management. With this setup, you can gain insights into the performance and health of your Reth Ethereum node.
 
 ## Prerequisites
-- Docker
-- Docker Compose
+- [Docker](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually)
 
 ## Installation
 
@@ -16,7 +16,7 @@ git clone https://github.com/your-repo/reth-monitoring.git
 cd reth-monitoring
 ```
 
-2. If you want to use Alertmanager with a Discord Webhook, you can copy the `.env.example` file to set your Webhook URL and rename the file to `.env.`.
+2. If you want to use Alertmanager with a Discord Webhook, you can copy the `.env.example` file to set your Webhook URL and rename the file to `.env`.
 
 3. Set the EL and CL metrics port targets in `prometheus/prometheus.yaml`
 
