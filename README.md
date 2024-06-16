@@ -1,7 +1,7 @@
 # Reth Monitoring
 
 ## Description
-This repository provides a Docker Compose setup for monitoring the execution of Reth Ethereum, an Ethereum client compatible with the Merge upgrade. It leverages Prometheus for monitoring, Grafana for data visualization, and Alertmanager for alert management. With this setup, you can gain insights into the performance and health of your Reth Ethereum node.
+This repository provides a Docker Compose setup for monitoring reth. It leverages Prometheus for monitoring, Grafana for data visualization, and Alertmanager for alert management. With this setup, you can gain insights into the performance and health of your Reth Ethereum node.
 
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/)
