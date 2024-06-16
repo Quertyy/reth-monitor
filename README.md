@@ -25,7 +25,7 @@ cd reth-monitoring
 docker compose up -d
 ```
 
-5. Access Grafana by opening `http://localhost:3000` in your web browser.
+5. Access Grafana by opening `http://localhost:3000` in your web browser. Default credentials are `admin:admin`.
 
 ## Configuration
 
